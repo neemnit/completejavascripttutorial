@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                text-align:center;
+                
+            }
+            
+        </style>
+        <title>get my location</title>
+    </head>
+    <body>
+        <h1></h1>
+        <input type="submit" value="get my location" onclick="myLocation()"/>
+        
+        <script>
+            const h1Handler=document.querySelector('h1')
+
+
+            function myLocation(){
+                navigator.geolocation.getCurrentPosition(showPosition);
+
+
+            }
+
+            
+            function showPosition(position) {
+  h1Handler.innerText = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+            }
+       
+        </script>
+    </body>
+</html>

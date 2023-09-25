@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>register now</title>
+
+    </head>
+    <body>
+        <input type="text" name="name" id="username" placeholder="enter your name"
+onblur="myBlur(event)"/><br/><br/>
+<input type="text" name="name" id="username" placeholder="enter your email"
+/><br/><br/>
+<label for="gender">select your gender</label><br/>
+<input type="radio" name="gender" value="" id="male"/>male<br/>
+<input type="radio" name="gender" value="" id="female"/>female<br/>
+<input type="submit" value="signup"/>
+<script>
+const male=document.querySelector('#male')
+const female=document.querySelector('#female')
+//console.log(male,female)
+
+    function myBlur(e){
+        const value=e.target.value
+    
+        const xhr=new XMLHttpRequest()
+        xhr.open('GET',`https://api.genderize.io?name=${value}`)
+        xhr.send()
+    
+        xhr.onload=function(){
+            const gender=JSON.parse(xhr.responseText)
+            if(gender.gender==='male'){
+                male.checked=true
+            }
+            else{
+                female.checked=true
+            }
+        }
+    }
+
+    
+</script>
+
+    </body>
+</html>

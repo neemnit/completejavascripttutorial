@@ -1,0 +1,6 @@
+console.log('hello ' +'world')
+console.log(10 +34)
+console.log('10'+5)
+console.log(7+'4')
+console.log(6+7+'4')
+console.log('2'+(10+4))

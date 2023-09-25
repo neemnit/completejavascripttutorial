@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            axios
+        </title>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js
+        "></script>
+        <script>
+            const url='https://jsonplaceholder.typicode.com/posts'
+            const url2='https://jsonplaceholder.typicode.com/users'
+            Promise.race([axios.get(url),axios.get(url2)])
+            .then((values)=>{
+                console.log(values.data)
+            })
+           
+            // const dctAxios={
+            //     get:function(url){
+            //         const promiseObj=new Promise((resolve,reject)=>{
+            //             const xhr=new XMLHttpRequest()
+            //             xhr.open('GET',url)
+            //             xhr.send()
+            //             xhr.onload=function(){
+
+                        
+            //             const data=JSON.parse(xhr.responseText)
+            //             resolve(data)
+            //             }
+            //             xhr.onerror=function(){
+            //                 reject(new Error ('something went wrong'))
+            //             }
+            //         })
+
+                    
+            //     console.log(promiseObj)
+            // return promiseObj
+            //     }}
+            //     //consuming code
+            //     dctAxios.get(url)
+            //     .then((res)=>{
+            //         console.log(res)
+            //     })
+            //     .catch((err)=>{
+            //         console.log(err.message)
+            //     })
+            //working with axios consuming
+            // axios.get(url).then((res)=>{
+            //     console.log(res.data)
+            // })
+            // .catch((err)=>{
+            //     console.log(err.message)
+            // })
+            //producing code
+            // const dctAxios={
+            //     get:function(url){
+            //         const promiseObj=new Promise((resolve,reject)=>{
+            //             const xhr=new XMLHttpRequest()
+            //             xhr.open('GET',url)
+            //             xhr.send()
+            //             xhr.onload=function(){
+
+                        
+            //             const data=JSON.parse(xhr.responseText)
+            //             resolve(data)
+            //             }
+            //             xhr.onerror=function(){
+            //                 reject(new Error ('something went wrong'))
+            //             }
+            //         })
+
+                    
+            //     console.log(promiseObj)
+            // return promiseObj
+            //     }}
+            //     //consuming code
+            //     dctAxios.get(url)
+            //     .then((res)=>{
+            //         console.log(res)
+            //     })
+            //     .catch((err)=>{
+            //         console.log(err.message)
+            //     })
+        </script>
+    </body>
+    </html>

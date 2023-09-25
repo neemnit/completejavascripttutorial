@@ -1,0 +1,5 @@
+console.log(10===10) && ('a'==='a')
+console.log(23===23 && 'v'==='d')
+console.log(5===5 || 3===4)
+console.log(!true)
+console.log(!false)

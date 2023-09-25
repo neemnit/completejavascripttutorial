@@ -1,0 +1,6 @@
+console.log(10=='10')
+console.log(10==='10')
+console.log(10>9)
+console.log('a'==='a')
+console.log(!false)
+console.log('a'==='b')

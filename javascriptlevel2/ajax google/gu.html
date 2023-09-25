@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet'/>
+        <style>
+
+            h2 {
+                font-family: "Lucida Console", monospace;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-family: "Lucida Console", monospace;   
+            }
+
+            div {
+                text-align: center;
+            }
+
+            button {
+                background-color: #24A0ED; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 4px;
+                margin-bottom: 4px;
+                margin-top: 10px;
+                cursor:pointer;
+            }
+
+        </style>
+        <title>My Location</title>
+    </head>
+    <body>
+
+        <div>
+            
+        <button onclick="myLocate()">Get My Location</button>
+        <h3 id="locator"></h3>
+        <h2 id="data"></h2>
+        <h3 id="latLabel"></h3>
+        <h2 style="color: green;" id="lat"></h2>
+        <h3 id="longLabel"></h3>
+        <h2 style="color: green;" id="long"></h2>
+        <h3 id="weatherTitle"></h3>
+        <h2 style="color: #24A0ED;" id="weather"></h2>
+
+        </div>
+
+        <div id="map" style="height: 300px; width: 560px; margin: auto;"></div>
+
+    <script>
+
+        const h3Locator = document.querySelector('#locator')
+        const h2Data = document.querySelector('#data')
+        const h3LatLabel = document.querySelector('#latLabel')
+        const h3LongLabel = document.querySelector('#longLabel')
+        const h2Lat = document.querySelector('#lat')
+        const h2Long = document.querySelector('#long')
+        const h3WeatherTitle = document.querySelector('#weatherTitle')
+        const h2Weather = document.querySelector('#weather')
+
+
+        function myLocate() {
+            navigator.geolocation.getCurrentPosition(showPosition)
+        }
+
+        function showPosition(position) {
+            const latts = parseFloat(position.coords.latitude)
+            const longs = parseFloat(position.coords.longitude)
+            h3Locator.textContent = `Your current position:`
+            h3LatLabel.textContent = `Latitude:`
+            h3LongLabel.textContent = `Longitude:`
+            h2Lat.innerHTML = latts
+            h2Long.innerHTML = longs
+                
+
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', `https://api.openweathermap.org/data/2.5/onecall?lat=${latts}&lon=${longs}&exclude=daily,minutely,hourly,alerts&units=metric&appid=3123346c39d704cbb86bc6e55cbb1a74`)
+        xhr.send()
+
+        xhr.onload = function() {
+        const answer = JSON.parse(xhr.responseText)
+        const currWeather = `${answer.current.temp}°C`
+        h3WeatherTitle.textContent = `Current Temperature At Your Location`
+        h2Weather.textContent = currWeather
+    }
+    
+    // You can get your own token from Mapbox website by creating account
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2FoaWxzYXgiLCJhIjoiY2t4eDE1eWk4NGE2ZDJ4cWt4cGhicTBzeSJ9.C6gTcwAkQA55hS0ZuJk6cA'
+    const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [longs, latts],
+    // remember, mapbox takes longitude first
+    zoom: 9
+})
+    const marker = new mapboxgl.Marker({
+        color: "#800000"
+    })
+    .setLngLat([longs, latts])
+    .addTo(map);
+}
+
+
+</script>
+
+</body>
+</html>

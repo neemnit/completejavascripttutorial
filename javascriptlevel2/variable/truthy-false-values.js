@@ -1,0 +1,19 @@
+console.log(0,Boolean(0))
+console.log(undefined,Boolean(undefined))
+console.log(null,Boolean(null))
+console.log('',Boolean(''))
+console.log(NaN,Boolean(NaN))
+console.log(false,Boolean(false))
+console.log(true,Boolean(true))
+console.log(1,Boolean(1))
+console.log([],Boolean([]))
+console.log({},Boolean({}))
+console.log(-1,Boolean(-1))
+console.log('dct',Boolean('dct'))
+//condition or loops
+if(0){
+    console.log('true')
+}
+else{
+    console.log('fasle')
+}

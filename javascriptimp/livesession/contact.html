@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact manager</title>
+    </head>
+    <body>
+        <h1>Contact manager</h1>
+        <form>
+            <label for="user">username</label>
+            <input type="text" name="username" id="user"/>
+            <ul></ul>
+        </form>
+        <script>
+            const contact=[
+                {name:'adam',mobile:'9430530233'},
+                {name:'adap',mobile:'9430446793'},
+                {name:'mahita',mobile:'9631030232'}
+            ]
+            const UlTag=document.querySelector('ul')
+const inputHandler=document.getElementById('user')
+
+let liTag
+for(let i=0;i<contact.length;i++){
+    liTag=document.createElement('li')
+    liTag.textContent=`${contact[i].name}  ${contact[i].mobile}`
+    UlTag.appendChild(liTag)
+}
+//liTag.textContent='adam'
+
+inputHandler.addEventListener('keyup',function(e){
+    UlTag.innerHTML=''
+    
+    for(let i=0;i<contact.length;i++){
+        if(contact[i].name.includes(e.target.value) || contact[i].mobile.includes(e.target.value))
+        {
+            liTag.textContent=(`${contact[i].name}, ${contact[i].mobile}`)
+           // console.log(result.length)
+           UlTag.appendChild(liTag)
+
+      }
+    }
+    for(let i=0;i<liTag.textContent.length;i++){
+        if(liTag[i].includes(e.target.value)){
+            liTag.innerHTML=liTag[i]
+        }
+    }
+})
+    
+
+/*for(let i=0;i<result.length;i++){
+    if(result[i].name.includes(e.target.value) || result[i].mobile.includes(e.target.value)){
+       curr=liTag.textContent=(`${result[i].name}, ${result[i].mobile}`) 
+        UlTag.appendChild(curr)
+    }
+}*/
+
+
+
+
+        </script>
+    </body>
+</html>
